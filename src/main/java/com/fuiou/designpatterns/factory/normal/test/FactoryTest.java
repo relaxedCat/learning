@@ -1,5 +1,8 @@
-package com.fuiou.designpatterns.factory.normal;
+package com.fuiou.designpatterns.factory.normal.test;
 
+import com.fuiou.designpatterns.factory.normal.AbstractFactory;
+import com.fuiou.designpatterns.factory.normal.Sender;
+import com.fuiou.designpatterns.factory.normal.SenderFactory;
 import com.fuiou.designpatterns.factory.normal.impl.SmsFactory;
 
 public class FactoryTest {
