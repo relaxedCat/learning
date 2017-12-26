@@ -13,7 +13,7 @@ import com.fuiou.designpatterns.proxy.dynamic.impl.RealSubject;
 public class DynamicProxyTest {
 
 	public static void main(String[] args) {
-		Subject realSubject = new RealSubject();
+		RealSubject realSubject = new RealSubject();
 		
 		InvocationHandler handler = new JdkProxy(realSubject);
 		Subject subject = (Subject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(), realSubject.getClass().getInterfaces(), handler);
@@ -22,11 +22,11 @@ public class DynamicProxyTest {
 		subject.hello("world");
 		
 		CglibProxy cp = new CglibProxy();
-		RealSubject realsub = new RealSubject();
 		Enhancer enhancer = new Enhancer();
-		enhancer.setSuperclass(realsub.getClass());
+		enhancer.setSuperclass(realSubject.getClass());
 		enhancer.setCallback(cp);
 		RealSubject proxysub = (RealSubject) enhancer.create();
+		System.err.println(proxysub.getClass().getName());
 		proxysub.rent();
 		proxysub.hello("you");
 	}
