@@ -14,8 +14,8 @@ public class FruitAnnotationConfig {
 		for (Field field : fields) {
 			if(field.isAnnotationPresent(FruitName.class)){
 				FruitName fruitName = field.getAnnotation(FruitName.class);
-				FruitNm = fruitName.value()+FruitNm;
-				System.err.println(fruitName);
+				FruitNm = FruitNm+fruitName.value();
+				System.err.println(FruitNm);
 			}else if(field.isAnnotationPresent(FruitColor.class)){
 				FruitColor fruitClr = field.getAnnotation(FruitColor.class);
 				FruitColor = FruitColor + fruitClr.fruitColor().toString();
@@ -26,6 +26,6 @@ public class FruitAnnotationConfig {
 	
 	public static void main(String[] args) {
 		FruitAnnotationConfig fac = new FruitAnnotationConfig();
-		fac.getFruitConfigInf(FruitColor.class);
+		fac.getFruitConfigInf(Apple.class);
 	}
 }
