@@ -28,6 +28,6 @@ public class BusiJfdk {
 //		JSONObject js = JSONObject.fromObject(msg);
 //		System.out.println(msg);
 		
-		System.out.println("https://jrwxp.fuiou.com/pro.html?appid=wx17f1e00c26885047&scope=snsapi_base&state=STATE&redirect_uri="+URLEncoder.encode("https://cfc.fuiou.com/jump/login.do?qrCode=0001"));
+		System.out.println("https://jrwxp.fuiou.com/pro.html?appid=wx17f1e00c26885047&scope=snsapi_base&state=STATE&redirect_uri="+URLEncoder.encode("https://cfc.fuiou.com/jump/login.do?qrCode=00000001"));
 	}
 }
