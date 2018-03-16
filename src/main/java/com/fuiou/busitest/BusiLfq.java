@@ -1,51 +1,50 @@
 package com.fuiou.busitest;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.fuiou.util.AesUtil;
 import com.fuiou.util.HttpPoster;
+import com.fuiou.util.MD5;
 
 public class BusiLfq {
 	
 	
-	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws Exception {
-		
 		HttpPoster post = new HttpPoster();
-		
-		String orderPayUrl = "http://192.168.52.51:8080/lfqpay/card/pay.do";
-		String smsUrl = "http://192.168.52.51:8080/lfqpay/card/smscode.do";
-		Scanner s = new Scanner(System.in);
-		System.out.println("请输入订单号：");
-		String orderNo = s.nextLine();
-		System.out.println("请输入手机号：");
-		String bankMobile = s.nextLine();
-		String smsUlr=smsUrl+"?orderNo="+orderNo+"&bankMobile="+bankMobile;
-		post.setUrl(smsUlr);
+		String uploadUrl = "https://www-1.fuiou.com:23456/lfqpay/refund/upload.do";
+		post.setUrl(uploadUrl);
 		post.setCharset("utf-8");
-		String smsmsg = post.post("");
-		System.out.println(smsmsg);
-		System.out.println("请输入验证码：");
-		String smsCode = s.nextLine();
-		System.out.println("请输入支付金额：");
-		String payAmt = s.nextLine();
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("cardholder", "王丹");
-		paramMap.put("identityNo", "330901198808018886");
-		paramMap.put("creditCardNo", "370248192322610");
-		paramMap.put("validMonthYear", "2022-08");
-		paramMap.put("cvn", "167");
-		paramMap.put("bankMobile", bankMobile);
-		paramMap.put("orderNo", orderNo);
-		paramMap.put("smsCode", smsCode);
-		paramMap.put("payAmt", payAmt);
-		paramMap.put("applyUser", "合欢");
-		post.setUrl(orderPayUrl);
-		post.setCharset("utf-8");
-		String paymsg = post.post(paramMap);
+		byte[] buffer = null;
+		File file = new File("F:\\timg (3).jpg");
+		FileInputStream fis = new FileInputStream(file);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		byte[] b = new byte[1024];
+		int n;
+        while ((n = fis.read(b)) != -1) {
+            bos.write(b, 0, n);
+        }
+        buffer = bos.toByteArray();
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("firmNo", "SHFYJRWL001");
+        map.put("orderNo", AesUtil.Encrypt("120802574512", "dd7ddd137dde4367"));
+        map.put("mchntSsn", AesUtil.Encrypt("1512701704254", "dd7ddd137dde4367"));
+        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        map.put("time", AesUtil.Encrypt(date, "dd7ddd137dde4367"));
+        map.put("token", getToken(date));
+		String paymsg = post.post(uploadUrl,map,file.getName(),buffer,"utf-8");
 		System.out.println(paymsg);
 		
+	}
+//	firmNo|mchntSsn|orderNo|md5key|time
+	private static String getToken(String date){
+		return MD5.MD5Encode("SHFYJRWL001|1512701704254|120802574512|236ff6ad90e78c6175e00ec61fe0560d|"+date, "utf-8");
 	}
 
 }
