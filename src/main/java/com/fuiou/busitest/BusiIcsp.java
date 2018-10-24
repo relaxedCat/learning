@@ -42,22 +42,6 @@ public class BusiIcsp {
 				"&firmNo=pei"+
 				"&userNm="+URLEncoder.encode((AesUtil.Encrypt("林殊", "46a0032448e74b4e")))+
 				"&token="+URLEncoder.encode(MD5.MD5Encode("bcede71d82995de1211b19623fb1a638|shenkang5|林殊|pei|02|100000000002|一姐企业", "UTF-8")));
-//		生产环境 01业务员
-		System.out.println("https://icsp.fuligold.com/interface/vtflogin.do"+"?loginId="+URLEncoder.encode(AesUtil.Encrypt("gu5", "4399958029fa4f07"))+
-				"&roleNo="+URLEncoder.encode(AesUtil.Encrypt("01", "4399958029fa4f07"))+
-				"&firmUserId="+URLEncoder.encode((AesUtil.Encrypt("100000000002", "4399958029fa4f07")))+
-				"&firmInsNm="+URLEncoder.encode((AesUtil.Encrypt("测试企业", "4399958029fa4f07")))+
-				"&firmNo=score2"+
-				"&userNm="+URLEncoder.encode((AesUtil.Encrypt("花云龙", "4399958029fa4f07")))+
-				"&token="+URLEncoder.encode(MD5.MD5Encode("2e2cbec5b3f768ad4668028b5bee740d|gu5|花云龙|score2|01|100000000002|测试企业", "UTF-8")));
-//		生产环境 02代理人
-		System.out.println("https://icsp.fuligold.com/interface/vtflogin.do"+"?loginId="+URLEncoder.encode(AesUtil.Encrypt("gu4", "4399958029fa4f07"))+
-				"&roleNo="+URLEncoder.encode(AesUtil.Encrypt("02", "4399958029fa4f07"))+
-				"&firmUserId="+URLEncoder.encode((AesUtil.Encrypt("100000000002", "4399958029fa4f07")))+
-				"&firmInsNm="+URLEncoder.encode((AesUtil.Encrypt("测试企业", "4399958029fa4f07")))+
-				"&firmNo=score2"+
-				"&userNm="+URLEncoder.encode((AesUtil.Encrypt("花云龙", "4399958029fa4f07")))+
-				"&token="+URLEncoder.encode(MD5.MD5Encode("2e2cbec5b3f768ad4668028b5bee740d|gu4|花云龙|score2|02|100000000002|测试企业", "UTF-8")));
-	
+
 	}
 }
