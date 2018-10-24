@@ -42,9 +42,6 @@ public class BusiLfq {
 		System.out.println(paymsg);
 		
 	}
-//	firmNo|mchntSsn|orderNo|md5key|time
-	private static String getToken(String date){
-		return MD5.MD5Encode("SHFYJRWL001|1512701704254|120802574512|236ff6ad90e78c6175e00ec61fe0560d|"+date, "utf-8");
-	}
+//	
 
 }
